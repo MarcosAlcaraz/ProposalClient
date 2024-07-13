@@ -1,0 +1,32 @@
+/* Header.css */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: yellow; /* Fondo amarillo */
+    color: #333; /* Color de texto */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+  }
+  
+  .left-buttons,
+  .right-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  button {
+    background-color: transparent;
+    border: 1px solid #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #f0f0f0;
+  }
+  
