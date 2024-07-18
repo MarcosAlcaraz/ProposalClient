@@ -1,0 +1,21 @@
+.card-view {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .card-view h3 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    color: #333333;
+  }
+  
+  .card-view p {
+    font-size: 1rem;
+    color: #555555;
+  }
+  

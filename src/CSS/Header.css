@@ -1,32 +1,44 @@
-/* Header.css */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 10vh; */
+  background-color: #f0f2f5;
+}
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: yellow; /* Fondo amarillo */
-    color: #333; /* Color de texto */
-    font-family: Arial, sans-serif; /* Fuente de texto */
-  }
-  
-  .left-buttons,
-  .right-buttons {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  button {
-    background-color: transparent;
-    border: 1px solid #333;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #f0f0f0;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.header button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header button:hover {
+  background-color: #0056b3;
+}
+
+.right-buttons {
+  display: flex;
+}

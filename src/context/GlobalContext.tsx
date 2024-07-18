@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface GlobalContextType {
+  headerTitle: string;
+  setHeaderTitle: (value: string) => void;
   fatherID: string;
   setFatherID: (value: string) => void;
   path: string[];
@@ -11,11 +13,13 @@ interface GlobalContextType {
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export const GlobalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+
+  const [headerTitle, setHeaderTitle] = useState<string>('');
   const [fatherID, setFatherID] = useState<string>('');
   const [path, setPath] = useState<string[]>(['']);
 
   return (
-    <GlobalContext.Provider value={{ fatherID, setFatherID, path, setPath }}>
+    <GlobalContext.Provider value={{ headerTitle, setHeaderTitle, fatherID, setFatherID, path, setPath }}>
       {children}
     </GlobalContext.Provider>
   );
