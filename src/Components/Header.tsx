@@ -1,35 +1,46 @@
-import '../CSS/Header.css';
-import { useNavigate } from 'react-router-dom';
-import { useGlobal } from '../context/GlobalContext';
+  import '../CSS/Header.css';
+  import { useNavigate } from 'react-router-dom';
+  // import { useGlobal } from '../context/GlobalContext';
 
-function Header() {
-  const { headerTitle } = useGlobal();
-  const navigate = useNavigate();
-  
-  const handleLeftButtonClick = () => {
-    navigate("/home");
-  };
+  interface HeaderProps {
+    headerTitle: string;
+    headerLeftButton: string;
+    headerRightButton: string;
+    headerRight2Button: string;
+  }
 
-  const handleRightButtonClick = () => {
-    navigate("/home");
-  };
+  const Header: React.FC<HeaderProps> = ({ headerTitle, headerLeftButton, headerRightButton, headerRight2Button }) => {
+    // const { headerTitle } = useGlobal();
+    // const { headerLeftButton } = useGlobal();
+    // const { headerRightButton } = useGlobal();
+    // const { headerRight2Button } = useGlobal();
+    const navigate = useNavigate();
 
-  const handleRight2ButtonClick = () => {
-    navigate("/home");
-  };
+    
+    const handleLeftButtonClick = () => {
+      navigate("/home");
+    };
 
-  return (
-    <div className="app">
-      <header className="header">
-        <button onClick={handleLeftButtonClick}>Izquierdo</button>
-        <h1>{headerTitle}</h1>
-        <div className="right-buttons">
-          <button onClick={handleRightButtonClick}>Derecho 1</button>
-          <button onClick={handleRight2ButtonClick}>Derecho 2</button>
-        </div>
-      </header>
-    </div>
-  );
-}
+    const handleRightButtonClick = () => {
+      navigate("/home");
+    };
 
-export default Header;
+    const handleRight2ButtonClick = () => {
+      navigate("/home");
+    };
+
+    return (
+      <div className="app">
+        <header className="header">
+          <button onClick={handleLeftButtonClick}>{headerLeftButton}</button>
+          <h1>{headerTitle}</h1>
+          <div className="right-buttons">
+            <button onClick={handleRightButtonClick}>{headerRightButton}</button>
+            <button onClick={handleRight2ButtonClick}>{headerRight2Button}</button>
+          </div>
+        </header>
+      </div>
+    );
+  }
+
+  export default Header;
