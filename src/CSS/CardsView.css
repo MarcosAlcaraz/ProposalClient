@@ -1,4 +1,11 @@
-.card-view {
+  .home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .card-view {
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 8px;
@@ -7,15 +14,41 @@
     width: 100%;
     max-width: 300px;
   }
-  
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+  }
+
   .card-view h3 {
     margin-top: 0;
     font-size: 1.25rem;
     color: #333333;
   }
-  
+
   .card-view p {
     font-size: 1rem;
     color: #555555;
   }
+
+  .new-proposal-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
   
+  .new-proposal-button:hover {
+    background-color: #0056b3;
+  }

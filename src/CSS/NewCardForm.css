@@ -1,0 +1,188 @@
+/* .addMedView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .whiteBoardAddMed {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    max-width: 25%;
+    margin: 0 auto;
+  }
+  
+  .whiteBoardAddMed input[type="text"],
+  .whiteBoardAddMed textarea,
+  .whiteBoardAddMed input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .whiteBoardAddMed textarea {
+    resize: none;
+  }
+
+  .whiteBoardAddMed input[type="color"] {
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .color-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .color-picker label {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .whiteBoardAddMed p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .cancel-button,
+  .finish-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  .finish-button {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .cancel-button:hover {
+    background-color: #999;
+  }
+  
+  .finish-button:hover {
+    background-color: #218838;
+  }
+   */
+
+   .addMedView {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo borroso */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Borrosidad del fondo */
+    z-index: 1000;
+  }
+  
+  .whiteBoardAddMed {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 20rem;
+    margin: 0 auto;
+  }
+  
+  .whiteBoardAddMed input[type="text"],
+  .whiteBoardAddMed textarea,
+  .whiteBoardAddMed input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    
+  }
+
+  .whiteBoardAddMed input[type="color"] {
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .whiteBoardAddMed textarea {
+    resize: none;
+  }
+  
+  .color-picker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .color-picker label {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .whiteBoardAddMed p {
+    margin: 0;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .cancel-button,
+  .finish-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  .finish-button {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .cancel-button:hover {
+    background-color: #999;
+  }
+  
+  .finish-button:hover {
+    background-color: #218838;
+  }
+  
