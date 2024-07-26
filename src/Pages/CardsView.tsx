@@ -1,7 +1,7 @@
 // import { useAuth } from '../context/AuthContext';
 // import { useGlobal } from '../context/GlobalContext';
 import Header from "../Components/Header";
-import GetProposalCards from '../Components/CardsView';
+import GetProposalCards from '../Components/GetProposalCards';
 import SubHeader from '../Components/SubHeader';
 import NewCardForm from '../Components/NewCardForm';
 import { useState } from 'react';
