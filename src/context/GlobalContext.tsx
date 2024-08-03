@@ -1,22 +1,33 @@
-// src/context/GlobalContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+interface PathItem {
+  id: number;
+  title: string;
+}
+
+interface PathStack {
+  path: PathItem[];
+}
+
 interface GlobalContextType {
-  fatherID: string;
-  setFatherID: (value: string) => void;
-  path: string[];
-  setPath: (value: string[]) => void;
+  fatherID: number;
+  setFatherID: (value: number) => void;
+  pathStackOfProposalView: PathStack;
+  setPathStackOfProposalView: (value: PathStack) => void;
+  pathText: string;
+  setPathText: (value: string) => void;
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export const GlobalProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
-  const [fatherID, setFatherID] = useState<string>('');
-  const [path, setPath] = useState<string[]>(['']);
+  const [fatherID, setFatherID] = useState<number>(0);
+  const [pathText, setPathText] = useState<string>("");
+  const [pathStackOfProposalView, setPathStackOfProposalView] = useState<PathStack>({ path: [] });
 
   return (
-    <GlobalContext.Provider value={{ fatherID, setFatherID, path, setPath }}>
+    <GlobalContext.Provider value={{ fatherID, setFatherID, pathText, setPathText,pathStackOfProposalView, setPathStackOfProposalView }}>
       {children}
     </GlobalContext.Provider>
   );

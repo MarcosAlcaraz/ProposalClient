@@ -7,15 +7,20 @@ import { AuthProvider } from "./context/AuthContext";
 import { GlobalProvider } from "./context/GlobalContext";
 import './index.css'
 import ProtectedRoute from "./Components/ProtectedRoute";
+import ProposalView from "./Pages/ProposalView";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginPage />,
+  },
   {
     path: "/home",
     element: <ProtectedRoute><Home /></ProtectedRoute>,
   },
   {
-    path: "/",
-    element: <LoginPage />,
+    path: "/ProposalView",
+    element: <ProtectedRoute><ProposalView /></ProtectedRoute>
   },
   // next elements {},{},{},
 ]);

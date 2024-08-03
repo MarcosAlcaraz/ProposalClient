@@ -1,0 +1,173 @@
+.father-container {
+    display: flex;
+    flex-direction: column; /* Para que las tarjetas estén en columna */
+}
+
+.father {
+    display: flex; /* Para que la tarjeta sea horizontal */
+    flex-direction: column; /* Cambia esto si quieres un diseño diferente */
+    background-color: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 16px; /* Espaciado interno */
+    align-self: center;
+    margin: 1rem;
+    width: 92%;
+}
+
+.children {
+    display: flex;
+    justify-content: space-between; /* Para separar el título y el botón derecho */
+    align-items: center;
+    width: 94%;
+    background-color: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 16px; /* Espaciado interno */
+    margin: 0.5rem 0.5rem; /* Espaciado en los laterales*/
+    cursor: pointer;
+}
+
+.childrenOfChildren {
+    display: flex;
+    justify-content: space-between; /* Para separar el título y el botón derecho */
+    align-items: center;
+    width: 94%;
+    background-color: white;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 16px; /* Espaciado interno */
+    margin: 0rem 1rem; /* Espaciado en los laterales*/
+    cursor: pointer;
+}
+
+.selectedChildrenContainer {
+    width: 99%;
+}
+
+.selectedChildren {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between; /* Para separar el título y el botón derecho */
+    align-items: center;
+    width: 95%;
+    background-color: #CEA9FF;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 16px; /* Espaciado interno */
+    margin: 0.5rem; /* Espaciado en los laterales*/
+    cursor: pointer;
+    position: relative;
+}
+
+.selectedChildrenContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.selectedChildrenTop-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectedChildrenTitle {
+    font-weight: bold;
+    margin: 0;
+}
+
+.selectedChildrenDescription {
+    margin-top: 4px;
+}
+
+.selectedChildrenBottom-left {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.selectedChildrenLeft-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.selectedChildrenCenter-right-button {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.unordered-item-list li,
+.ordered-item-list li {
+    margin-top: 1.5rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+.children-unordered-item-list li,
+.children-ordered-item-list li {
+    margin-top: 1rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+.father-header {
+    display: flex;
+    justify-content: space-between; /* Para separar el título y el botón superior derecho */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.father-title {
+    margin: 0; /* Elimina el margen del título */
+}
+
+.father-body {
+    margin: 16px 0; /* Espacio entre el cuerpo y el pie de la tarjeta */
+}
+
+.ordered-item-list {
+    list-style-type: decimal;
+}
+
+.unordered-item-list {
+    list-style-type: disc;
+}
+
+.father-footer {
+    display: flex; /* Para que los botones estén en una fila */
+    justify-content: space-between; /* Espacio entre la izquierda y la derecha */
+}
+
+.footer-left,
+.footer-right {
+    display: flex; /* Para alinear los botones en línea */
+    gap: 8px; /* Espacio entre los botones */
+}
+
+.top-right-button,
+.left-button,
+.right-button {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    padding: 8px 12px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+}
+
+.left-button:hover,
+.right-button:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}

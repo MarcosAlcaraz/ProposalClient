@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getProposalCards from '../Api/getProposalCards';
-import '../CSS/CardsView.css'
+import getProposalCards from '../api/getProposalCards';
 import CardView from './CardView';
 
 interface Card {
@@ -46,7 +45,7 @@ const GetProposalCards: React.FC = () => {
     <div className="card-grid" >
       {error && <p>{error}</p>}
       {proposalData.map((card, index) => (
-        <CardView key={index} title={card.title} color={card.color} is_numerated ={card.is_numerated}childrenTitles={card.childrenTitles}/>
+        <CardView key={index} id={card.id} title={card.title} color={card.color} is_numerated ={card.is_numerated} childrenTitles={card.childrenTitles}/>
       ))}
     </div>
   );

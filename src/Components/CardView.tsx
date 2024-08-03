@@ -1,16 +1,35 @@
 import React from 'react';
-import '../CSS/CardsView.css';
+import '../CSS/CardView.css';
+import { useGlobal } from "../context/GlobalContext";
+import { useNavigate } from 'react-router-dom';
 
 interface CardViewProps {
+  id: number;
   title: string;
   color: string;
   is_numerated: boolean;
   childrenTitles: string[];
 }
 
-const CardView: React.FC<CardViewProps> = ({ title, color, is_numerated, childrenTitles }) => {
+const CardView: React.FC<CardViewProps> = ({ id, title, color, is_numerated, childrenTitles }) => {
+  const navigate = useNavigate();
+  const { setFatherID, setPathStackOfProposalView, pathStackOfProposalView } = useGlobal();
+
+  const handleCardViewClick = (aa: string) => {
+    setFatherID(id);
+    const newPath = {
+      path: [
+        ...pathStackOfProposalView.path,
+        { id, title }
+      ]
+    };
+    setPathStackOfProposalView(newPath);
+    navigate("/ProposalView");
+  }
+
   return (
-    <div className="card-view" style={{backgroundColor: color}}>
+    // CARD
+    <div className="card-view" style={{ backgroundColor: color }} onClick={() => handleCardViewClick("a")}>
       <h3>{title}</h3>
       {is_numerated ? (
         <ol>
@@ -26,6 +45,7 @@ const CardView: React.FC<CardViewProps> = ({ title, color, is_numerated, childre
         </ul>
       )}
     </div>
+    // CARD ENDs
   );
 };
 
