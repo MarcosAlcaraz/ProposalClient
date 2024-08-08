@@ -72,7 +72,6 @@ function ProposalView() {
     const [fatherData, setfatherData] = useState<Proposal[]>([]);   // Es donde se almacena el padre y sus hijos (Todos los datos de la proposal)
     const [selectedID, setSelectedID] = useState(fatherID);
     const [error, setError] = useState<string | null>(null);
-    const [fatherTitle, setFatherTitle] = useState("");
 
     useEffect(() => {
         fetchData();
@@ -101,7 +100,6 @@ function ProposalView() {
     const handleSetChildAsFatherButtonClick = (childID: number, childTitle: string) => {
         setOldFatherID(fatherID);
         setFatherID(childID);
-        setFatherTitle(childTitle);
         const id = childID;
         const title = childTitle;
 

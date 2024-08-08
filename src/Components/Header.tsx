@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import '../CSS/Header.css';
 import { useNavigate } from 'react-router-dom';
-// import { useGlobal } from '../context/GlobalContext';
 
 interface HeaderProps {
   headerTitle: string;
@@ -11,17 +11,33 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ headerTitle, headerLeftButton, headerRightButton, headerRight2Button }) => {
-  const { pathStackOfProposalView, setPathStackOfProposalView, setPathText } = useGlobal();
+  const { pathStackOfProposalView, setPathStackOfProposalView, setPathText, setOldFatherID, setFatherID, fatherID } = useGlobal();
+  const [ tryToReturnProposal, setTryToreturnProposal ] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    returnProposal();
+  }, [tryToReturnProposal])
 
   const buildPath = (pathStack: { path: { id: number; title: string; }[] }) => {
     setPathText(pathStack.path.map(item => item.title).join('/'));
   };
 
+  const returnProposal = () => {
+    const newPath = pathStackOfProposalView.path;
+    setFatherID(newPath.length > 0 ? newPath[newPath.length - 1]?.id : -1);
+    setOldFatherID(newPath.length > 1 ? newPath[newPath.length - 2]?.id : 0);
+    buildPath({ path: newPath });
+  };
+
+
   const handleLeftButtonClick = () => {
-    setPathStackOfProposalView({path: pathStackOfProposalView.path.slice(0, -1)})
-    buildPath({path: pathStackOfProposalView.path.slice(0, -1)}); // HERE BUILD DELETE LAST ROUTE
-    navigate("/home");
+    setPathStackOfProposalView({ path: pathStackOfProposalView.path.slice(0, -1) })
+    setTryToreturnProposal(!tryToReturnProposal);
+    if(fatherID === pathStackOfProposalView.path.map(item => item.id)[0]) {
+      setFatherID(0);
+      navigate("/home");
+    }
   };
 
 
