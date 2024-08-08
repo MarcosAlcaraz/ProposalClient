@@ -15,7 +15,7 @@ const CardView: React.FC<CardViewProps> = ({ id, title, color, is_numerated, chi
   const navigate = useNavigate();
   const { setFatherID, setPathStackOfProposalView, pathStackOfProposalView } = useGlobal();
 
-  const handleCardViewClick = (aa: string) => {
+  const handleCardViewClick = () => {
     setFatherID(id);
     const newPath = {
       path: [
@@ -29,7 +29,7 @@ const CardView: React.FC<CardViewProps> = ({ id, title, color, is_numerated, chi
 
   return (
     // CARD
-    <div className="card-view" style={{ backgroundColor: color }} onClick={() => handleCardViewClick("a")}>
+    <div className="card-view" style={{ backgroundColor: color }} onClick={() => handleCardViewClick()}>
       <h3>{title}</h3>
       {is_numerated ? (
         <ol>

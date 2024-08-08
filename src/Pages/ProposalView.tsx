@@ -67,54 +67,169 @@ interface Proposal {
     };
 };
 
-const childrenRender = () => {
-    return (
-        <div></div>
-    );
-};
-
 function ProposalView() {
-    const { pathText, setPathText, pathStackOfProposalView, fatherID } = useGlobal();
-    const [proposalData, setProposalData] = useState<Proposal[]>([]);   // Es donde se almacena el padre y sus hijos (Todos los datos de la proposal)
-    const [selectedID, setSelectedID] = useState(0);
+    const { setPathStackOfProposalView, pathText, setPathText, pathStackOfProposalView, fatherID, setFatherID, oldFatherID, setOldFatherID } = useGlobal();
+    const [fatherData, setfatherData] = useState<Proposal[]>([]);   // Es donde se almacena el padre y sus hijos (Todos los datos de la proposal)
+    const [selectedID, setSelectedID] = useState(fatherID);
     const [error, setError] = useState<string | null>(null);
+    const [fatherTitle, setFatherTitle] = useState("");
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getProposal(fatherID);
-                const data: Proposal = await response;
-                setProposalData([data]);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setError('Error fetching data');
-            }
-        };
         fetchData();
-        buildPath(pathStackOfProposalView);
+        buildPathText(pathStackOfProposalView);
     }, [fatherID]);
 
-    const buildPath = (pathStack: { path: { id: number; title: string; }[] }) => {
-        setPathText(pathStack.path.map(item => item.title).join('/'));
+    const fetchData = async () => {
+        try {
+            const response = await getProposal(oldFatherID, fatherID);
+            const data: Proposal = await response;
+            setfatherData([data]);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setError('Error fetching data');
+        }
     };
 
-    const handleChildrenClick = (childrenID: number) => {
-        setSelectedID(childrenID);
+    const buildPathText = (pathStack: { path: { id: number; title: string; }[] }) => {
+        setPathText(pathStack.path.map(children => children.title).join('/'));
+    };
+
+    const handleChildClick = (childID: number) => {
+        setSelectedID(childID);
+    };
+
+    const handleSetChildAsFatherButtonClick = (childID: number, childTitle: string) => {
+        setOldFatherID(fatherID);
+        setFatherID(childID);
+        setFatherTitle(childTitle);
+        const id = childID;
+        const title = childTitle;
+
+        const newPath = {
+            path: [
+                ...pathStackOfProposalView.path,
+                { id, title }
+            ]
+        };
+        setPathStackOfProposalView(newPath);
+    };
+
+    const renderChildOfChild = (child: CategoryItem) => {
+
+        if (child.categories.main.is_numerated) {
+            return (<ol className="children-ordered-item-list">
+                {child.categories.main.items.map((childOfchild, index) => (
+                    <div style={{ display: "flex", marginTop: 10, marginLeft: 20 }}>
+                        <li key={index}></li>
+                        <div className="childrenOfChildren" onClick={() => handleSetChildAsFatherButtonClick(child.id, child.title)}>
+                            <p>{childOfchild.title}</p>
+                            <button className="top-right-button" onClick={(e) => {
+                                e.stopPropagation();
+                                // Call function
+                            }}>...</button>
+                        </div>
+                    </div>
+                ))}
+            </ol>)
+        } else {
+            return (
+                <ul className="children-unordered-item-list">
+                    {child.categories.main.items.map((childOfchild, index) => (
+                        <div>
+                            <li key={index}></li>
+                            <div className="childrenOfChildren" onClick={() => handleChildClick(child.id)}>
+                                <p>{childOfchild.title}</p>
+                                <button className="top-right-button">...</button>
+                            </div>
+                        </div>
+                    ))}
+                </ul>
+            )
+        }
+    };
+
+    const renderChild = (child: CategoryItem) => {
+        if (selectedID === child.id) {
+            return (
+                <div className="selectedChildrenContainer">
+                    <div className="selectedChildren" onClick={() => handleChildClick(-1)}>
+                        <div className="selectedChildrenContent">
+                            <div className="selectedChildrenTop-left">
+                                <p className="selectedChildrenTitle">{child.title}</p>
+                                <br />
+                                <p className="selectedChildrenDescription">{child.description}</p>
+                            </div>
+                            <br />
+                            <div className="selectedChildrenBottom-left">
+                                <button className="selectedChildrenLeft-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>Listado</button>
+                                <button className="selectedChildrenLeft-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>Numerado</button>
+                            </div>
+                            <button className="selectedChildrenCenter-right-button" onClick={(e) => {
+                                e.stopPropagation();
+                                // Call function
+                            }}>...</button>
+                        </div>
+                    </div>
+                    <div className="childrenOfChildrenContainer">
+                        {renderChildOfChild(child)}
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="children" onClick={() => handleChildClick(child.id)}>
+                    <p>{child.title}</p>
+                    <button className="top-right-button" onClick={(e) => {
+                        e.stopPropagation();
+                        // Call Proposal Contextual menu
+                    }}>...</button>
+                </div>
+            );
+        };
+    };
+
+    const renderChildren = (father: Proposal) => {
+        if (father.categories.main.is_numerated) {
+            return (<ol className="ordered-item-list">
+                {father.categories.main.items.map((children, index) => (
+                    <div style={{ display: "flex", marginLeft: 80 }}>
+                        <li key={index}></li>
+                        {renderChild(children)}
+                    </div>
+                ))}
+            </ol>);
+        } else {
+            return (
+                <ol className="unordered-item-list">
+                    {father.categories.main.items.map((children, index) => (
+                        <div style={{ display: "flex", marginLeft: 80 }}>
+                            <li key={index}></li>
+                            {renderChild(children)}
+                        </div>
+                    ))}
+                </ol>
+            );
+        };
     };
 
     return (
         <div>
             <Header headerTitle={pathText} headerLeftButton="Back" headerRightButton="Manifesto" headerRight2Button="Asks" />
-            {/* FATHER */}
-            <div>
+            <div className="Proposal Container">
                 {error ? (
                     <div>{error}</div>
                 ) : (
                     <div className="father-container">
-                        {proposalData.map((proposal) => (
-                            <div className="father" key={proposal.id}>
+                        {fatherData.map((father) => (
+                            <div className="father" key={father.id}>
                                 <div className="father-header">
-                                    <h2 className="father-title">{proposal.title}</h2>
+                                    <h2 className="father-title">{father.title}</h2>
                                     <button className="top-right-button">...</button>
                                 </div>
                                 <div className="father-body"></div>
@@ -135,122 +250,12 @@ function ProposalView() {
                     </div>
                 )}
             </div>
-            {/* FATHER ENDs */}
-            {/* CHILDREN */}
-            {proposalData.map((proposal) => (
+            {fatherData.map((father) => (
                 <div className="children-container">
-                    {proposal.categories.main.is_numerated ? (
-                        // WORKSPACE
-                        // TODO:
-                        // 1. Mostrar Hijos de los hijos
-                        // 2. 
-                        // 3. 
-
-                        <ol className="ordered-item-list">
-                            {proposal.categories.main.items.map((item, index) => (
-                                <div style={{ display: "flex", marginLeft: 80 }}>
-                                    <li key={index}></li>
-                                    {selectedID === item.id ? (
-                                        <div className="selectedChildrenContainer">
-                                            <div className="selectedChildren" onClick={() => handleChildrenClick(-1)}>
-                                                <div className="selectedChildrenContent">
-                                                    <div className="selectedChildrenTop-left">
-                                                        <p className="selectedChildrenTitle">{item.title}</p>
-                                                        <br />
-                                                        <p className="selectedChildrenDescription">{item.description}</p>
-                                                    </div>
-                                                    <br />
-                                                    <div className="selectedChildrenBottom-left">
-                                                        <button className="selectedChildrenLeft-button">Listado</button>
-                                                        <button className="selectedChildrenLeft-button">Numerado</button>
-                                                    </div>
-                                                    <button className="selectedChildrenCenter-right-button">...</button>
-                                                </div>
-                                            </div>
-                                            <div className="childrenOfChildrenContainer">
-                                                {item.categories.main.is_numerated ? (
-                                                    <ol className="children-ordered-item-list">
-                                                        {item.categories.main.items.map((childrenOfChildren, index) => (
-                                                            <div style={{ display: "flex", marginTop: 10, marginLeft: 20}}>
-                                                                <li key={index}></li>
-                                                                <div className="childrenOfChildren" onClick={() => handleChildrenClick(item.id)}>
-                                                                    <p>{childrenOfChildren.title}</p>
-                                                                    <button className="top-right-button">...</button>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </ol>
-                                                ) : (
-                                                    <ul className="children-unordered-item-list">
-                                                        {item.categories.main.items.map((childrenOfChildren, index) => (
-                                                            <div>
-                                                                <li key={index}></li>
-                                                                <div className="childrenOfChildren" onClick={() => handleChildrenClick(item.id)}>
-                                                                    <p>{childrenOfChildren.title}</p>
-                                                                    <button className="top-right-button">...</button>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                    ) : (
-                                        <div className="children" onClick={() => handleChildrenClick(item.id)}>
-                                            <p>{item.title}</p>
-                                            <button className="top-right-button">...</button>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </ol>
-                        // WORKSPACE
-
-                    ) : (
-
-                        <ol className="unordered-item-list">
-                            {proposal.categories.main.items.map((item, index) => (
-                                <div style={{ display: "flex", marginLeft: 80 }}>
-                                    <li key={index}></li>
-                                    {selectedID === item.id ? (
-                                        <div className="selectedChildrenContainer">
-                                            <div className="selectedChildren" onClick={() => handleChildrenClick(-1)}>
-                                                <div className="selectedChildrenContent">
-                                                    <div className="selectedChildrenTop-left">
-                                                        <p className="selectedChildrenTitle">{item.title}</p>
-                                                        <br />
-                                                        <p className="selectedChildrenDescription">{item.description}</p>
-                                                    </div>
-                                                    <br />
-                                                    <div className="selectedChildrenBottom-left">
-                                                        <button className="selectedChildrenLeft-button">Listado</button>
-                                                        <button className="selectedChildrenLeft-button">Numerado</button>
-                                                    </div>
-                                                    <button className="selectedChildrenCenter-right-button">...</button>
-                                                </div>
-                                            </div>
-                                            <div className="childrenOfChildrenContainer">
-                                                <p>CHILDREN OF CHILDREN CONTAINER</p>
-                                            </div>
-                                        </div>
-
-                                    ) : (
-                                        <div className="children" onClick={() => handleChildrenClick(item.id)}>
-                                            <p>{item.title}</p>
-                                            <button className="top-right-button">...</button>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </ol>
-
-                    )
-                    }
+                    {renderChildren(father)}
                 </div>
             ))
             }
-            {/* CHILDREN ENDs */}
         </div >
     );
 };
@@ -258,9 +263,7 @@ function ProposalView() {
 export default ProposalView;
 
 {/*     
------------------------------------------------------------------------------------------------           
-                Proposal Area (DOING)
-                    Father area (DOING)
+-----------------------------------------------------------------------------------------------
                         PROGRAM Father contextual button 
                             PROGRAM AND Call component "Proposal contextual menu"
                                 Show options:
@@ -283,9 +286,7 @@ export default ProposalView;
                                     done
                                     archived
                             }          
------------------------------------------------------------------------------------------------
-                    Children Area (DOING)
-                        Children VIEW
+    -----------------------------------------------------------------------------------------------
                             Render Children (DOING)
                                 PROGRAM Contextual button
                                     PROGRAM AND Call component "Proposal contextual menu"
@@ -298,7 +299,6 @@ export default ProposalView;
                                             Archive
                                         }
                                 ONLY IF USER CLICK A PROPOSAL
-                                    Show his Description after title
                                     PROGRAM AND Call Component "Proposal Categories Menu"
                                     {
                                         to-dos

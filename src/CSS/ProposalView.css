@@ -158,7 +158,9 @@
 
 .top-right-button,
 .left-button,
-.right-button {
+.right-button,
+.selectedChildrenLeft-button,
+.selectedChildrenCenter-right-button {
     background-color: #007bff; /* Color de fondo del botón */
     color: white; /* Color del texto */
     border: none; /* Sin borde */
@@ -168,6 +170,10 @@
 }
 
 .left-button:hover,
-.right-button:hover {
+.right-button:hover,
+.selectedChildrenLeft-button :hover,
+.top-right-button :hover,
+.selectedChildrenCenter-right-button :hover {
     background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+    transition-duration: 50ms;
 }

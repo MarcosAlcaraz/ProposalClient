@@ -1,14 +1,14 @@
-import axios from "axios"
+import axios from 'axios';
 
-const url = "http://localhost:3000/"
+const getProposal = async (fatherID: number, childID: number) => {
+  try {
+    console.log("http://localhost:3000/proposals?parent_id=" + fatherID + "&child_id=" + childID);
+    const response = await axios.get("http://localhost:3000/proposals?parent_id=" + fatherID + "&child_id=" + childID);
+    console.log(response.data);
+    return(response.data);
+  } catch (error) {
+    console.error('Error fetching proposals:', error);
+  }
+};
 
-const getProposal = async (proposalID: number) => {
-    try {
-        const response = await axios.get(url + 'Proposals/' + proposalID);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-export default getProposal;
+export default getProposal
