@@ -13,7 +13,7 @@
     width: 100%; /* Cubre todo el ancho de la pantalla */
     height: 10rem;
     background-color: #F0F2F5;
-    z-index: 0; /* Asegura que esté detrás del contenido principal */
+    z-index: 1; /* Asegura que esté detrás del contenido principal */
 }
 
 .children-container {
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: space-between; /* Para separar el título y el botón derecho */
     align-items: center;
-    width: 95%;
+    width: 93%;
     background-color: white;
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
@@ -67,13 +67,15 @@
     display: flex;
     justify-content: space-between; /* Para separar el título y el botón derecho */
     align-items: center;
-    width: 90%;
+    width: 94%;
     background-color: #CEA9FF;
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
     padding: 16px; /* Espaciado interno */
     margin: 0.5rem; /* Espaciado en los laterales*/
     cursor: pointer;
+    position: relative;
+    z-index: 0;
 }
 
 .selectedChildrenContent {
@@ -104,6 +106,15 @@
     flex-direction: row;
     gap: 8px;
     margin-top: auto;
+}
+
+.selectedChildrenBottom-Right {
+    position: absolute; /* Para posicionarlo relativo a selectedChildren */
+    bottom: 0; /* Mover al fondo del contenedor padre */
+    right: 0; /* Mover al lado derecho del contenedor padre */
+    display: flex;
+    gap: 8px; /* Espacio entre los botones */
+    padding: 16px; /* Espaciado interno si es necesario */
 }
 
 .selectedChildrenLeft-button {

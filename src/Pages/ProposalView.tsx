@@ -114,7 +114,6 @@ function ProposalView() {
     };
 
     const renderChildOfChild = (child: CategoryItem) => {
-
         if (child.categories.main.is_numerated) {
             return (<ol className="children-ordered-item-list">
                 {child.categories.main.items.map((childOfchild, index) => (
@@ -168,6 +167,24 @@ function ProposalView() {
                                     e.stopPropagation();
                                     // Call function
                                 }}>Numerado</button>
+                            </div>
+                            <div className="selectedChildrenBottom-Right">
+                                <button className="right-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>to-dos</button>
+                                <button className="right-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>main</button>
+                                <button className="right-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>recompilation</button>
+                                <button className="right-button" onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Call function
+                                }}>...</button>
                             </div>
                         </div>
                         <div className="selectedChildrenRightCenter">
