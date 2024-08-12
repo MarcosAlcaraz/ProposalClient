@@ -97,9 +97,10 @@ function ProposalView() {
         setSelectedID(childID);
     };
 
-    const handleSetChildAsFatherButtonClick = (childID: number, childTitle: string) => {
+    const handleSetChildAsFatherButtonClick = (childID: number, childTitle: string, childOfChildID: number) => {
         setOldFatherID(fatherID);
         setFatherID(childID);
+        setSelectedID(childOfChildID);
         const id = childID;
         const title = childTitle;
 
@@ -119,7 +120,7 @@ function ProposalView() {
                 {child.categories.main.items.map((childOfchild, index) => (
                     <div style={{ display: "flex", marginTop: 10, marginLeft: 20 }}>
                         <li key={index}></li>
-                        <div className="childrenOfChildren" onClick={() => handleSetChildAsFatherButtonClick(child.id, child.title)}>
+                        <div className="childrenOfChildren" onClick={() => handleSetChildAsFatherButtonClick(child.id, child.title, childOfchild.id)}>
                             <p>{childOfchild.title}</p>
                             <button className="top-right-button" onClick={(e) => {
                                 e.stopPropagation();
@@ -168,6 +169,8 @@ function ProposalView() {
                                     // Call function
                                 }}>Numerado</button>
                             </div>
+                        </div>
+                        <div className="selectedChildrenRightCenter">
                             <button className="selectedChildrenCenter-right-button" onClick={(e) => {
                                 e.stopPropagation();
                                 // Call function
@@ -219,6 +222,7 @@ function ProposalView() {
     return (
         <div>
             <Header headerTitle={pathText} headerLeftButton="Back" headerRightButton="Manifesto" headerRight2Button="Asks" />
+
             <div className="Proposal Container">
                 {error ? (
                     <div>{error}</div>
@@ -248,6 +252,7 @@ function ProposalView() {
                     </div>
                 )}
             </div>
+            <div className="white-background"></div>
             {fatherData.map((father) => (
                 <div className="children-container">
                     {renderChildren(father)}

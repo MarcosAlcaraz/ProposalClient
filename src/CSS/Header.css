@@ -2,19 +2,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 10vh; */
   background-color: #f0f2f5;
 }
 
 .header {
+  position: fixed; /* Fija el header en la parte superior */
+  top: 0; /* Asegura que esté en la parte superior */
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
   padding: 1rem 2rem;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que el header esté por encima del contenido */
 }
 
 .header h1 {
@@ -41,4 +43,9 @@
 
 .right-buttons {
   display: flex;
+}
+
+/* Añadir margen superior al contenido para evitar que quede cubierto por el header */
+body, .app {
+  margin-top: 80px; /* Ajusta según la altura del header */
 }
