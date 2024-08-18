@@ -2,18 +2,18 @@
     position: fixed;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Para que las tarjetas estén en columna */
+    flex-direction: column;
     z-index: 2;
 }
 
 .white-background {
-    position: fixed; /* O 'fixed' dependiendo del comportamiento que desees */
-    top: 0; /* Comienza desde la parte superior de la pantalla */
-    left: 0; /* Se alinea a la izquierda */
-    width: 100%; /* Cubre todo el ancho de la pantalla */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 10rem;
     background-color: #F0F2F5;
-    z-index: 1; /* Asegura que esté detrás del contenido principal */
+    z-index: 1;
 }
 
 .children-container {
@@ -22,40 +22,46 @@
 }
 
 .father {
-    display: flex; /* Para que la tarjeta sea horizontal */
-    flex-direction: column; /* Cambia esto si quieres un diseño diferente */
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 16px; /* Espaciado interno */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
     align-self: center;
     margin: 1rem;
     width: 92%;
 }
 
+.main-container {
+    height: 100vh;
+    box-sizing: border-box; /*Check*/
+    margin-bottom: 10%;
+}
+
 .children {
     display: flex;
-    justify-content: space-between; /* Para separar el título y el botón derecho */
+    justify-content: space-between;
     align-items: center;
     width: 94%;
-    background-color: white;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 16px; /* Espaciado interno */
-    margin: 0.5rem 0.5rem; /* Espaciado en los laterales*/
+    /* background-color: white; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 0.5rem 0.5rem;
     cursor: pointer;
 }
 
-.childrenOfChildren {
+.childOfChild {
     display: flex;
-    justify-content: space-between; /* Para separar el título y el botón derecho */
+    justify-content: space-between;
     align-items: center;
     width: 93%;
     background-color: white;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 16px; /* Espaciado interno */
-    margin: 0rem 1rem; /* Espaciado en los laterales*/
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 0rem 1rem;
     cursor: pointer;
 }
 
@@ -65,14 +71,14 @@
 
 .selectedChildren {
     display: flex;
-    justify-content: space-between; /* Para separar el título y el botón derecho */
+    justify-content: space-between;
     align-items: center;
     width: 94%;
-    background-color: #CEA9FF;
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 16px; /* Espaciado interno */
-    margin: 0.5rem; /* Espaciado en los laterales*/
+    /* background-color: #CEA9FF; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 0.5rem;
     cursor: pointer;
     position: relative;
     z-index: 0;
@@ -109,12 +115,12 @@
 }
 
 .selectedChildrenBottom-Right {
-    position: absolute; /* Para posicionarlo relativo a selectedChildren */
-    bottom: 0; /* Mover al fondo del contenedor padre */
-    right: 0; /* Mover al lado derecho del contenedor padre */
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
-    gap: 8px; /* Espacio entre los botones */
-    padding: 16px; /* Espaciado interno si es necesario */
+    gap: 8px;
+    padding: 16px;
 }
 
 .selectedChildrenLeft-button {
@@ -127,16 +133,13 @@
 }
 
 .selectedChildrenCenter-right-button {
-    width: 2.5rem;
-    height: 2.5rem;
     border: none;
     border-radius: 4px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    align-self: center; /* Centrado vertical dentro de su contenedor flex */
+    align-self: center;
 }
-
 
 .unordered-item-list li,
 .ordered-item-list li {
@@ -154,16 +157,16 @@
 
 .father-header {
     display: flex;
-    justify-content: space-between; /* Para separar el título y el botón superior derecho */
-    align-items: center; /* Centrar verticalmente */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .father-title {
-    margin: 0; /* Elimina el margen del título */
+    margin: 0;
 }
 
 .father-body {
-    margin: 16px 0; /* Espacio entre el cuerpo y el pie de la tarjeta */
+    margin: 16px 0;
 }
 
 .ordered-item-list {
@@ -175,14 +178,14 @@
 }
 
 .father-footer {
-    display: flex; /* Para que los botones estén en una fila */
-    justify-content: space-between; /* Espacio entre la izquierda y la derecha */
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer-left,
 .footer-right {
-    display: flex; /* Para alinear los botones en línea */
-    gap: 8px; /* Espacio entre los botones */
+    display: flex;
+    gap: 8px;
 }
 
 .top-right-button,
@@ -190,19 +193,69 @@
 .right-button,
 .selectedChildrenLeft-button,
 .selectedChildrenCenter-right-button {
-    background-color: #007bff; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    padding: 8px 12px; /* Espaciado interno */
-    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
 }
 
 .left-button:hover,
 .right-button:hover,
-.selectedChildrenLeft-button :hover,
-.top-right-button :hover,
-.selectedChildrenCenter-right-button :hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+.selectedChildrenLeft-button:hover,
+.top-right-button:hover,
+.selectedChildrenCenter-right-button:hover {
+    background-color: #0056b3;
+    transition-duration: 50ms;
+}
+
+.context-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    z-index: 100;
+}
+
+.context-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.context-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+.bottom-right-buttons {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+}
+
+.unselect-all-button,
+.options-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.unselect-all-button:hover,
+.options-button:hover {
+    background-color: #0056b3;
     transition-duration: 50ms;
 }
